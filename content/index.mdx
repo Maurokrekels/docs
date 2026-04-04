@@ -1,105 +1,53 @@
-import { Cards, Steps } from 'nextra/components'
-
 # FiveGateway Documentation
 
-The management platform for FiveM servers — manage players, view logs and monitor statistics from one dashboard.
+FiveGateway is a management platform for FiveM servers. Monitor players, view logs and track statistics from a single dashboard.
 
-## Get Started
+## Getting Started
 
-<Cards num={2}>
-  <Cards.Card
-    title="Introduction"
-    href="/getting-started/introduction"
-    arrow
-  >
-    Learn what FiveGateway is and what it can do for your server.
-  </Cards.Card>
-  <Cards.Card
-    title="Install Resource"
-    href="/getting-started/install-resource"
-    arrow
-  >
-    Download the resource, add your API key and connect your server in minutes.
-  </Cards.Card>
-</Cards>
+New to FiveGateway? Follow these steps to get up and running:
 
-## Features
-
-<Cards num={3}>
-  <Cards.Card title="Player Management" href="/dashboard/players">
-    View online players, search player history, kick players and take screenshots from the dashboard.
-  </Cards.Card>
-  <Cards.Card title="Structured Logging" href="/resource/structured-logs">
-    Send custom logs from your scripts with searchable key-value metadata. Includes Lua and JavaScript examples.
-  </Cards.Card>
-  <Cards.Card title="txAdmin Integration" href="/resource/txadmin">
-    Bans, warns, kicks and announcements from txAdmin are automatically logged to your dashboard.
-  </Cards.Card>
-  <Cards.Card title="Statistics" href="/dashboard/statistics">
-    Monitor player counts, uptime, CPU and memory usage with charts and trends.
-  </Cards.Card>
-  <Cards.Card title="Queue System" href="/dashboard/queue">
-    Priority roles, whitelist mode, maintenance mode and VPN blocking — all managed from the dashboard.
-  </Cards.Card>
-  <Cards.Card title="Resource Management" href="/dashboard/resources">
-    Start, stop and restart resources on your server directly from the dashboard.
-  </Cards.Card>
-</Cards>
-
-## Quick Setup
-
-Setting up FiveGateway takes just a few minutes:
-
-<Steps>
-
-### Create an account
-
-Go to [my.fivegateway.com](https://my.fivegateway.com) and log in with Discord.
-
-### Add your server
-
-Click **Add Server** in the dashboard and copy your API key.
-
-### Install the resource
-
-Download the resource from the dashboard, place it in your `resources` folder and add this to your `server.cfg`:
+1. [Create an account](https://my.fivegateway.com) — log in with Discord
+2. [Add your server](/getting-started/connect-server) — click **Add Server** and copy your API key
+3. [Install the resource](/getting-started/install-resource) — drop it in your `resources` folder and add your key to `server.cfg`
 
 ```cfg
 set FIVEGATEWAY_API_KEY "your-api-key-here"
 ensure fivegateway
 ```
 
-### Done
+Restart your server and it will appear as **Online** in the dashboard. See the [introduction](/getting-started/introduction) for a full overview.
 
-Restart your server. Once connected, your server appears as **Online** in the dashboard.
+---
 
-</Steps>
+## Dashboard
 
-See [Install Resource](/getting-started/install-resource) for detailed instructions.
+- [Overview](/dashboard/overview) — navigate the dashboard
+- [Players](/dashboard/players) — view online players, search history, kick and screenshot
+- [Logging](/dashboard/logging) — browse and search server logs
+- [Statistics](/dashboard/statistics) — player counts, uptime, CPU and memory charts
+- [Queue](/dashboard/queue) — priority roles, whitelist, maintenance mode and VPN blocking
+- [Moderation](/dashboard/moderation) — kick players and take screenshots remotely
+- [Resources](/dashboard/resources) — start, stop and restart resources from the dashboard
+
+## Resource
+
+- [Installation](/resource/installation) — install and update the FiveGateway resource
+- [Configuration](/resource/configuration) — all available settings
+- [Structured Logs](/resource/structured-logs) — send custom logs with key-value metadata from Lua or JavaScript
+- [txAdmin Integration](/resource/txadmin) — bans, warns, kicks and announcements are logged automatically
+
+## Integrations
+
+- [Discord Bot](/integrations/discord-bot) — notifications and commands from Discord
+
+---
 
 ## Plans
 
-All plans use Discord OAuth. Upgrade or downgrade at any time via the dashboard.
-
 | Plan | Price | Servers | Log Retention |
 |------|-------|---------|---------------|
-| **Starter** | Free | 1 server | 7 days |
-| **Pro** | €9/month | 3 servers | 30 days |
-| **Premium** | €19/month | Unlimited | 90 days |
+| Starter | Free | 1 | 7 days |
+| Pro | €9/mo | 3 | 30 days |
+| Premium | €19/mo | Unlimited | 90 days |
 
-## More
-
-<Cards num={2}>
-  <Cards.Card title="Configuration" href="/resource/configuration">
-    All available settings for the FiveGateway resource.
-  </Cards.Card>
-  <Cards.Card title="Discord Bot" href="/integrations/discord-bot">
-    Get notifications and run commands directly from Discord.
-  </Cards.Card>
-  <Cards.Card title="Moderation" href="/dashboard/moderation">
-    Kick players and take screenshots remotely from the dashboard.
-  </Cards.Card>
-  <Cards.Card title="Dashboard Overview" href="/dashboard/overview">
-    Learn your way around the FiveGateway dashboard.
-  </Cards.Card>
-</Cards>
+All plans use Discord OAuth. Upgrade or downgrade any time at [my.fivegateway.com](https://my.fivegateway.com).
