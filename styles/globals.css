@@ -1,0 +1,11 @@
+:root {
+    --nextra-primary-hue: 264deg;
+    --nextra-primary-saturation: 78%;
+    --nextra-primary-lightness: 55%;
+}
+
+.dark {
+    --nextra-primary-hue: 264deg;
+    --nextra-primary-saturation: 70%;
+    --nextra-primary-lightness: 64%;
+}

@@ -1,0 +1,53 @@
+# Queue
+
+import { Callout } from 'nextra/components'
+
+The queue module manages your FiveM server's join queue. When the server is full, players automatically enter the queue and wait for a slot.
+
+## Queue View
+
+In the dashboard you can see a live overview of the queue:
+
+- **Position** — The player's place in the queue.
+- **Name** — The player's in-game name.
+- **Wait Time** — How long the player has been waiting.
+- **Priority** — The player's priority level.
+
+## Configuration
+
+All queue settings are managed from the dashboard — you do not need to edit any files on your server. Available settings:
+
+| Setting | Description |
+|---------|-------------|
+| **Queue Enabled** | Turn the queue on or off. |
+| **Max Queue Size** | Maximum number of players that can wait in the queue (1-500). |
+| **Min Wait Time** | Minimum time a player must wait before joining (in seconds). |
+| **Grace Period** | Time a disconnected player has to rejoin without losing their spot (in seconds). |
+| **Join Interval** | Minimum time between players joining from the queue (in seconds). |
+| **Whitelist Mode** | Only allow whitelisted players to join the server. |
+| **VPN Block** | Block players using a VPN (kick or send to queue). |
+
+## Priority Roles
+
+You can give certain Discord roles priority in the queue. Players with a priority role will move ahead of players with lower or no priority.
+
+Priority roles are configured in the dashboard under your server's queue settings. For each Discord role you can set:
+
+- **Priority level** — A number that determines the order (higher = more priority).
+- **Whitelisted** — Whether this role counts as whitelisted when whitelist mode is enabled.
+
+<Callout type="info">
+  Priority is automatically detected when a player has a Discord identifier linked to their FiveM account.
+</Callout>
+
+## Maintenance Mode
+
+You can enable maintenance mode from the dashboard. When active, new players cannot join the server — they see a maintenance message instead. Players who are already on the server are not affected.
+
+## Queue Management
+
+From the dashboard you can manually:
+
+- Kick a player from the queue with an optional reason.
+- View all players currently in the queue.
+- Toggle maintenance mode on or off.

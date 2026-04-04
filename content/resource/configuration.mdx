@@ -1,0 +1,40 @@
+# Configuration
+
+import { Callout } from "nextra/components"
+
+All settings for the FiveGateway resource are configured via **convars** in your `server.cfg`. These are simple key-value lines that FiveM reads when the server starts.
+
+## API Key (required)
+
+This is the only setting you need to get started. Add your API key from the dashboard:
+
+```cfg
+set FIVEGATEWAY_API_KEY "your-api-key-here"
+```
+
+<Callout type="warning">
+    The `set` line must come **before** the `ensure fivegateway` line in your
+    `server.cfg`, otherwise the resource won't be able to read the key.
+</Callout>
+
+## Full Example
+
+Here is a complete example of how your `server.cfg` lines should look:
+
+```cfg
+# FiveGateway settings
+set FIVEGATEWAY_API_KEY "fg_abc123def456"
+
+# Start the resource
+ensure fivegateway
+```
+
+## Dashboard Settings
+
+Most settings like **queue configuration**, **logging categories** and **moderation options** are managed directly from the dashboard. You do not need to edit any config files for these — just log in to [my.fivegateway.com](https://my.fivegateway.com) and go to your server settings.
+
+## All Options
+
+| Setting               | Value  | Default | Description                                |
+| --------------------- | ------ | ------- | ------------------------------------------ |
+| `FIVEGATEWAY_API_KEY` | string | —       | Your API key from the dashboard (required) |

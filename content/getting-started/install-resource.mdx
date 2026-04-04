@@ -1,0 +1,77 @@
+# Install Resource
+
+import { Callout, Steps } from 'nextra/components'
+
+The FiveGateway resource is the part that runs on your FiveM server and connects to the platform via WebSocket.
+
+<Steps>
+
+### Download the resource
+
+Download the latest version of the FiveGateway resource from the dashboard under **Downloads**.
+
+### Place the files
+
+Extract the archive and place the `fivegateway` folder in the `resources` directory of your FiveM server:
+
+```
+resources/
+└── fivegateway/
+    ├── fxmanifest.lua
+    ├── server.js
+    ├── client.js
+    └── ui/
+        ├── index.html
+        ├── index.js
+        ├── index.css
+        └── screenshot.js
+```
+
+### Add your API key
+
+Open your `server.cfg` and add the following line with your API key:
+
+```cfg
+set FIVEGATEWAY_API_KEY "your-api-key-here"
+```
+
+<Callout type="info">
+  You can find your API key in the dashboard under the server settings. See [Configuration](/resource/configuration) for all available settings.
+</Callout>
+
+### Start the resource
+
+Add the resource to your `server.cfg` (make sure it comes **after** the API key line):
+
+```cfg
+set FIVEGATEWAY_API_KEY "your-api-key-here"
+ensure fivegateway
+```
+
+### Verify the connection
+
+Start your server and check the console. When the connection is successful, you will see a banner like this:
+
+```
+ _____ _            ____       _
+|  ___(_)_   _____ / ___| __ _| |_ _____      ____ _ _   _
+| |_  | \ \ / / _ \ |  _ / _` | __/ _ \ \ /\ / / _` | | | |
+|  _| | |\ V /  __/ |_| | (_| | ||  __/\ V  V / (_| | |_| |
+|_|   |_| \_/ \___|\____|\__,_|\__\___| \_/\_/ \__,_|\__, |
+                                                     |___/
+  ✔ Welcome, YourServerName!
+  Server connected to FiveGateway
+  Plan: Starter
+```
+
+In the dashboard, your server should now appear as **Online**.
+
+</Steps>
+
+<Callout type="warning">
+  Make sure your server allows outgoing WebSocket traffic. Some hosting providers block this by default.
+</Callout>
+
+## Next Step
+
+Your server is now connected. Go to [Dashboard Overview](/dashboard/overview) to see what you can do.

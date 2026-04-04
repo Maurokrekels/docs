@@ -1,0 +1,50 @@
+# Logging
+
+import { Callout } from 'nextra/components'
+
+FiveGateway receives and displays logs from your FiveM server in real-time. This gives you a clear view of what is happening on your server without needing access to the server console.
+
+## Log View
+
+Logs are displayed chronologically with the newest at the top. Each log entry contains:
+
+- **Timestamp** — The exact time of the event.
+- **Category** — The type of log (e.g. admin actions, economy, txAdmin events).
+- **Data** — The key-value pairs that were sent with the log.
+- **Player** — The player linked to the event (if applicable).
+
+## Filtering
+
+You can filter logs by:
+
+- **Category** — Show only logs from a specific category.
+- **Player** — Show only logs from a specific player.
+- **Time Period** — Limit logs to a specific time range.
+- **Search Term** — Search on text within the log data.
+
+<Callout type="info">
+  Combine multiple filters to quickly find specific events. For example: all admin actions from a specific player in the last 24 hours.
+</Callout>
+
+## Log Sources
+
+Logs can come from two sources:
+
+1. **Your own scripts** — Send custom logs using the `log` export. See [Structured Logs](/resource/structured-logs) for how to set this up.
+2. **txAdmin** — Bans, warns, kicks and announcements from txAdmin are logged automatically. See [txAdmin Integration](/resource/txadmin).
+
+## Log Categories
+
+You create and manage log categories in the dashboard. Each category has a unique ID (UUID) that you use in your scripts to send logs to the right place.
+
+## Log Retention
+
+How long logs are kept depends on your plan:
+
+| Plan | Retention |
+|------|-----------|
+| Starter | 7 days |
+| Pro | 30 days |
+| Premium | 90 days |
+
+Older logs are automatically deleted after the retention period.

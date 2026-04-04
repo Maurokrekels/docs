@@ -1,0 +1,54 @@
+# Discord Bot
+
+import { Callout, Steps } from 'nextra/components'
+
+FiveGateway offers a Discord bot integration so you can receive notifications and check server info directly from Discord.
+
+## Features
+
+- **Notifications** — Receive messages in a Discord channel when events happen, such as player joins, leaves or admin actions.
+- **Server Status** — Check the current server status via a command.
+- **Player Info** — Look up player information from Discord.
+
+## Setting Up the Bot
+
+<Steps>
+
+### Add the bot
+
+Go to the FiveGateway dashboard under **Settings** > **Integrations** > **Discord Bot** and click **Add Bot**. You will be redirected to Discord to authorize the bot for your server.
+
+### Configure a channel
+
+Select the Discord channel where you want to receive notifications. The bot needs **Send Messages** permission in this channel.
+
+### Choose notifications
+
+Configure which events send a notification:
+
+- Player join/leave
+- Admin actions
+- Server start/stop
+- Queue alerts
+
+### Test
+
+Use the command `/fivegateway status` in Discord to check if the bot is working correctly.
+
+</Steps>
+
+<Callout type="info">
+  The Discord bot uses slash commands. Make sure the bot has the right permissions to register slash commands in your Discord server.
+</Callout>
+
+## Available Commands
+
+| Command | Description |
+|---------|-------------|
+| `/fivegateway status` | Shows the current server status and player count |
+| `/fivegateway players` | List of online players |
+| `/fivegateway player <name>` | Search info about a specific player |
+
+## Multiple Servers
+
+If you have multiple FiveM servers connected, you can set up a separate notification channel per server. The bot commands support an optional server parameter to specify which server you want to query.

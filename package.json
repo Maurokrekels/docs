@@ -1,0 +1,29 @@
+{
+    "name": "docs",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "dev": "next dev",
+        "build": "next build",
+        "start": "next start",
+        "postbuild": "pagefind --site .next/server/app --output-path public/_pagefind"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "packageManager": "bun@1.2.3",
+    "dependencies": {
+        "next": "^16.2.2",
+        "nextra": "^4.6.1",
+        "nextra-theme-docs": "^4.6.1",
+        "react": "^19.2.4",
+        "react-dom": "^19.2.4"
+    },
+    "devDependencies": {
+        "@types/node": "^22.19.17",
+        "@types/react": "^19.2.14",
+        "pagefind": "^1.4.0",
+        "typescript": "^5.9.3"
+    }
+}

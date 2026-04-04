@@ -1,0 +1,70 @@
+# Installation
+
+import { Callout, Steps } from 'nextra/components'
+
+The FiveGateway resource connects your FiveM server to the platform. Here you will find the full installation instructions.
+
+## Requirements
+
+- A FiveM server with a recent build of FXServer.
+- A FiveGateway account with a linked server (see [Connect Server](/getting-started/connect-server)).
+- Access to the `resources` folder and `server.cfg` of your server.
+
+<Steps>
+
+### Download
+
+Download the latest version of the resource from the dashboard under **Downloads**.
+
+### Extract
+
+Extract the archive into the `resources` folder of your FiveM server:
+
+```
+resources/
+└── fivegateway/
+    ├── fxmanifest.lua
+    ├── server.js
+    ├── client.js
+    └── ui/
+        ├── index.html
+        ├── index.js
+        ├── index.css
+        └── screenshot.js
+```
+
+### Configure
+
+Open your `server.cfg` and add your API key:
+
+```cfg
+set FIVEGATEWAY_API_KEY "your-api-key-here"
+```
+
+See [Configuration](/resource/configuration) for all available settings.
+
+### Activate
+
+Add the resource to `server.cfg` (below the API key line):
+
+```cfg
+set FIVEGATEWAY_API_KEY "your-api-key-here"
+ensure fivegateway
+```
+
+### Verify
+
+Start your server and check the console for the FiveGateway startup banner. Your server should show as **Online** in the dashboard.
+
+</Steps>
+
+<Callout type="warning">
+  Make sure outgoing WebSocket traffic is not blocked by your firewall or hosting provider.
+</Callout>
+
+## Updating
+
+You can update the resource in two ways:
+
+1. **From the dashboard** — Click the update button in your server settings. The resource will download and install the new version automatically and restart itself.
+2. **Manually** — Download the latest resource from the dashboard and replace the files on your server. Your `server.cfg` settings are not affected.

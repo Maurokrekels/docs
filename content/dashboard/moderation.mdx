@@ -1,0 +1,23 @@
+# Moderation
+
+import { Callout } from 'nextra/components'
+
+FiveGateway gives you moderation tools that you can use directly from the dashboard, without needing access to the server console.
+
+## Kick Players
+
+You can kick a player from the server directly from the dashboard. Click on a player in the player list, then use the **Kick** button. You will need to provide a reason, which the player will see when they are disconnected.
+
+## Take Screenshots
+
+FiveGateway can capture a screenshot of what a player sees on their screen. This is useful for checking if a player is cheating or breaking rules.
+
+To take a screenshot, click on a player in the player list and use the **Screenshot** button. The screenshot will be uploaded and displayed in the dashboard.
+
+<Callout type="info">
+  Screenshots are taken client-side and uploaded securely. The player will not see any notification that a screenshot was taken.
+</Callout>
+
+## How It Works
+
+All moderation actions are sent from the dashboard to your server via the WebSocket connection. This means they only work when your server is **Online** and connected to FiveGateway.

@@ -1,0 +1,157 @@
+# Structured Logs
+
+import { Callout, Tabs } from "nextra/components"
+
+Structured logs let you send custom log entries from your own scripts to the FiveGateway dashboard. Each log entry is linked to a **log category** that you create in the dashboard, and contains key-value data that you can search and filter on.
+
+## How It Works
+
+1. **Create a log category** in the dashboard (e.g. "Admin Actions", "Economy", "Vehicles").
+2. **Copy the category ID** — this is a unique identifier (UUID) that the dashboard gives you.
+3. **Send logs from your scripts** using the FiveGateway export with the category ID and your data.
+
+## Sending Logs
+
+Use the `log` export from the FiveGateway resource. You need two things:
+
+- **Category ID** — The UUID of your log category from the dashboard.
+- **Values** — A table (Lua) or object (JS) with the data you want to log.
+
+<Tabs items={['Lua', 'JavaScript']}>
+
+<Tabs.Tab>
+
+```lua
+-- Basic log
+exports['fivegateway']:log("your-category-id-here", {
+    player_name = GetPlayerName(source),
+    action = "spawned vehicle",
+    vehicle = "adder",
+    plate = "AB-123-CD"
+})
+```
+
+```lua
+-- Economy log
+exports['fivegateway']:log("economy-category-id", {
+    player_name = GetPlayerName(source),
+    type = "transfer",
+    amount = 50000,
+    recipient = GetPlayerName(targetId)
+})
+```
+
+```lua
+-- Admin action log
+exports['fivegateway']:log("admin-category-id", {
+    admin_name = GetPlayerName(source),
+    action = "kicked player",
+    target_name = GetPlayerName(targetId),
+    reason = "AFK too long"
+})
+```
+
+</Tabs.Tab>
+
+<Tabs.Tab>
+
+```js
+// Basic log
+exports["fivegateway"]["log"]("your-category-id-here", {
+    player_name: GetPlayerName(source),
+    action: "spawned vehicle",
+    vehicle: "adder",
+    plate: "AB-123-CD",
+})
+```
+
+```js
+// Economy log
+exports["fivegateway"]["log"]("economy-category-id", {
+    player_name: GetPlayerName(source),
+    type: "transfer",
+    amount: 50000,
+    recipient: GetPlayerName(targetId),
+})
+```
+
+```js
+// Admin action log
+exports["fivegateway"]["log"]("admin-category-id", {
+    admin_name: GetPlayerName(source),
+    action: "kicked player",
+    target_name: GetPlayerName(targetId),
+    reason: "AFK too long",
+})
+```
+
+</Tabs.Tab>
+
+</Tabs>
+
+## Alternative Syntax
+
+You can also pass a single table/object with `categoryId` and `values`:
+
+<Tabs items={['Lua', 'JavaScript']}>
+
+<Tabs.Tab>
+
+```lua
+exports['fivegateway']:log({
+    categoryId = "your-category-id-here",
+    values = {
+        player_name = GetPlayerName(source),
+        action = "some action"
+    }
+})
+```
+
+</Tabs.Tab>
+
+<Tabs.Tab>
+
+```js
+exports["fivegateway"]["log"]({
+    categoryId: "your-category-id-here",
+    values: {
+        player_name: GetPlayerName(source),
+        action: "some action",
+    },
+})
+```
+
+</Tabs.Tab>
+
+</Tabs>
+
+<Callout type="info">
+    The export is also available under the name `sendStructuredLog` — both work
+    exactly the same way.
+</Callout>
+
+## Parameters
+
+| Parameter   | Type         | Required | Description                                          |
+| ----------- | ------------ | -------- | ---------------------------------------------------- |
+| Category ID | string       | Yes      | The UUID of the log category, found in the dashboard |
+| Values      | table/object | Yes      | Key-value pairs with the data you want to log        |
+
+## Tips
+
+- **Create separate categories** for different types of logs (admin, economy, vehicles, etc.) so you can filter them easily in the dashboard.
+- **Use consistent key names** across your logs. For example, always use `player_name` for the player's name so you can search across all logs.
+- **The values are searchable** in the dashboard. You can filter on any key or value you send.
+- **Logs are sent in the background** — calling the export does not block your script.
+
+<Callout type="warning">
+    The values parameter must be a table/object (key-value pairs). Arrays and
+    other types are not accepted.
+</Callout>
+
+## Troubleshooting
+
+If your logs are not showing up in the dashboard:
+
+1. **Check the category ID** — Make sure you copied the correct UUID from the dashboard.
+2. **Verify the connection** — Your server must be connected (showing Online in the dashboard) for logs to be sent.

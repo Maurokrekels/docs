@@ -1,0 +1,10 @@
+import type { MetaRecord } from 'nextra'
+
+const meta: MetaRecord = {
+    installation: 'Installation',
+    configuration: 'Configuration',
+    'structured-logs': 'Structured Logs',
+    'txadmin': 'txAdmin Integration',
+}
+
+export default meta

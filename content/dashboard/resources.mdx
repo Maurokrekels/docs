@@ -1,0 +1,30 @@
+# Resources
+
+FiveGateway shows you all resources running on your FiveM server and lets you manage them from the dashboard.
+
+## Resource List
+
+The resource list shows all resources on your server with their current state:
+
+- **Started** — The resource is running.
+- **Stopped** — The resource is not running.
+
+## Managing Resources
+
+You can perform the following actions on any resource from the dashboard:
+
+| Action | Description |
+|--------|-------------|
+| **Start** | Start a stopped resource. |
+| **Stop** | Stop a running resource. |
+| **Restart** | Stop and start a resource again. |
+
+import { Callout } from 'nextra/components'
+
+<Callout type="warning">
+  You cannot stop or restart the FiveGateway resource itself from the dashboard — this is blocked to prevent disconnecting from the platform.
+</Callout>
+
+## Real-Time Updates
+
+The resource list updates automatically when a resource is started or stopped, whether from the dashboard or from the server console.
