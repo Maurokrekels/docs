@@ -1,17 +1,17 @@
 # txAdmin Integration
 
-import { Callout } from 'nextra/components'
+import { Callout } from "nextra/components"
 
 FiveGateway automatically picks up events from [txAdmin](https://txadmin.gg/) and logs them to your dashboard. You do not need to configure anything — if txAdmin is running on your server, FiveGateway will capture its events automatically.
 
 ## What Gets Logged
 
-| Event | Description |
-|-------|-------------|
-| **Ban** | When a player is banned via txAdmin. Includes player name, reason, duration and admin name. |
-| **Warn** | When a player receives a warning. Includes player name, reason and admin name. |
-| **Kick** | When a player is kicked. Includes player name, reason and admin name. |
-| **Announcement** | When an admin sends a server-wide announcement. Includes the message and admin name. |
+| Event            | Description                                                                                 |
+| ---------------- | ------------------------------------------------------------------------------------------- |
+| **Ban**          | When a player is banned via txAdmin. Includes player name, reason, duration and admin name. |
+| **Warn**         | When a player receives a warning. Includes player name, reason and admin name.              |
+| **Kick**         | When a player is kicked. Includes player name, reason and admin name.                       |
+| **Announcement** | When an admin sends a server-wide announcement. Includes the message and admin name.        |
 
 ## Logged Data
 
@@ -28,5 +28,7 @@ Each event includes the following details where available:
 txAdmin logs appear in the dashboard under **Logging**, just like any other structured log. You can filter them by their category (e.g. `txadmin.ban`, `txadmin.warn`, `txadmin.kick`, `txadmin.announcement`).
 
 <Callout type="info">
-  txAdmin integration works out of the box. As long as both txAdmin and FiveGateway are running on the same server, events are captured automatically.
+    txAdmin integration works out of the box. As long as both txAdmin and
+    FiveGateway are running on the same server, events are captured
+    automatically.
 </Callout>

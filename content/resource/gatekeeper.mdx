@@ -1,0 +1,82 @@
+# Gatekeeper
+
+import { Callout } from "nextra/components"
+
+Gatekeeper is a built-in backdoor scanner that runs inside the FiveGateway resource. It inspects every other resource on your server for patterns associated with known malicious loaders, obfuscated payloads, and compromised domains, and streams the results to your dashboard in real time.
+
+## What it protects against
+
+Gatekeeper looks for the classic shapes of FiveM backdoors:
+
+- **Remote loaders** - scripts that download a payload from the internet and execute it via `eval`, `new Function`, or `load()`/`loadstring()` on a `PerformHttpRequest` response.
+- **Known malicious domains** - references to the WASP, CIPHER, BLUM, HYDROGEN panel families and similar command-and-control hosts.
+- **Obfuscated payloads** - long hex-escape sequences, `eval(atob(...))`, `eval(Buffer.from(..., "base64"))`, `String.fromCharCode(...)` chains, `eval(unescape(...))`.
+- **Lua injection patterns** - `load()` / `loadstring()` on dynamic input and on `PerformHttpRequest` responses.
+
+Each finding includes the exact file and line, two lines of context, a human-readable explanation of what the pattern does, how a backdoor like that typically gets onto a server, and what the server owner should do about it.
+
+## When scans run
+
+Gatekeeper runs scans in three situations:
+
+1. **On resource start** - when any other resource is started, Gatekeeper runs a fast, signature-light scan on it. Multiple resources that start within 10 seconds of each other are batched into a single pass so that the server-boot burst does not turn into fifty parallel scans.
+2. **Scheduled deep scan** - on a cron schedule (weekly Sunday 04:00 by default), Gatekeeper runs a full deep scan across all resources. Deep mode includes the obfuscation signatures, which are heavier to evaluate.
+3. **Manual scan** - you can trigger a quick or deep scan of a single resource or the full server from the dashboard.
+
+## Player-threshold protection
+
+Scanning thousands of files is I/O-heavy. To keep Gatekeeper from hurting gameplay, every scan respects a player-count threshold:
+
+- **Empty server only (default)** - scans only run when the server has zero players online. Anything queued while the server is busy is scanned automatically the moment the server empties.
+- **Threshold** - set a maximum player count (e.g. 10). Scans run when the player count is at or below that number.
+- **Always** - scan regardless of player count. Use this on staging or development servers.
+
+Manual scans that you fire from the dashboard can be marked **force** to ignore the threshold.
+
+## What happens when Gatekeeper finds something
+
+Findings stream to the dashboard as they are detected - you do not have to wait for the scan to finish. For each finding the dashboard shows:
+
+- **Severity** (critical, high, medium, low, unknown)
+- **Signature ID** (e.g. `RL-001`, `DOM-001`, `OB-002`, `LUA-001`)
+- **Location** - resource, relative file path, line, column
+- **Context** - two lines before and after the match
+- **The matched text** - truncated to 500 characters
+- **What it does, how it got there, how to prevent it**
+
+If you decide a finding is a false positive, you can mark the specific finding as safe or ignore a whole signature across the server. Ignored entries are persisted in the dashboard and applied on every future scan.
+
+## Unscannable files
+
+Binary files (DLLs, EXE, images, archives, compiled Lua) cannot be scanned for textual signatures. Gatekeeper reports these as `unscannable-file` findings with severity `unknown` so that a server owner can still audit what is shipping inside a resource - an unexpected `.dll` inside a Lua-only resource is itself a warning sign.
+
+## Recommended workflow
+
+1. Install the latest FiveGateway resource - Gatekeeper is enabled by default.
+2. Open the dashboard and review any findings from the initial scans.
+3. Keep the scheduled weekly deep scan enabled.
+4. When you install a new resource, start it on an empty server first so the automatic on-start scan has a chance to flag problems before any player is online.
+5. If you ever see a critical finding in a resource you did not write yourself, remove the resource and rotate any secrets (database credentials, Discord webhooks, Steam API keys) that the server has access to.
+
+<Callout type="info">
+    Gatekeeper never modifies your files unless you explicitly approve a
+    remediation action from the dashboard. The default setting
+    `requireConfirmation` is on.
+</Callout>
+
+## Settings reference
+
+| Setting                    | Default     | Description                                                   |
+| -------------------------- | ----------- | ------------------------------------------------------------- |
+| `enabled`                  | `true`      | Master switch for the scanner.                                |
+| `scanOnResourceStart`      | `true`      | Run a quick scan every time a resource starts.                |
+| `playerThresholdMode`      | `empty`     | `empty`, `threshold`, or `always`.                            |
+| `playerThreshold`          | `10`        | Max players online when `playerThresholdMode` is `threshold`. |
+| `scheduledDeepScanEnabled` | `true`      | Enable the weekly deep scan.                                  |
+| `scheduledDeepScanCron`    | `0 4 * * 0` | Cron expression for the deep scan.                            |
+| `scanTimeoutSeconds`       | `60`        | Maximum duration of any single scan.                          |
+| `maxQueuedScans`           | `50`        | Cap on pending scans.                                         |
+| `allowRemediation`         | `true`      | Allow the dashboard to request remediation actions.           |
+| `requireConfirmation`      | `true`      | Require dashboard confirmation before mutating files.         |
+| `ignoredSignatureIds`      | `[]`        | Signature IDs to skip (e.g. `"OB-004"`).                      |
+| `ignoredFindings`          | `[]`        | Specific finding IDs to suppress.                             |

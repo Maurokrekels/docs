@@ -1,6 +1,6 @@
 # Queue
 
-import { Callout } from 'nextra/components'
+import { Callout } from "nextra/components"
 
 The queue module manages your FiveM server's join queue. When the server is full, players automatically enter the queue and wait for a slot.
 
@@ -17,15 +17,15 @@ In the dashboard you can see a live overview of the queue:
 
 All queue settings are managed from the dashboard — you do not need to edit any files on your server. Available settings:
 
-| Setting | Description |
-|---------|-------------|
-| **Queue Enabled** | Turn the queue on or off. |
-| **Max Queue Size** | Maximum number of players that can wait in the queue (1-500). |
-| **Min Wait Time** | Minimum time a player must wait before joining (in seconds). |
-| **Grace Period** | Time a disconnected player has to rejoin without losing their spot (in seconds). |
-| **Join Interval** | Minimum time between players joining from the queue (in seconds). |
-| **Whitelist Mode** | Only allow whitelisted players to join the server. |
-| **VPN Block** | Block players using a VPN (kick or send to queue). |
+| Setting            | Description                                                                      |
+| ------------------ | -------------------------------------------------------------------------------- |
+| **Queue Enabled**  | Turn the queue on or off.                                                        |
+| **Max Queue Size** | Maximum number of players that can wait in the queue (1-500).                    |
+| **Min Wait Time**  | Minimum time a player must wait before joining (in seconds).                     |
+| **Grace Period**   | Time a disconnected player has to rejoin without losing their spot (in seconds). |
+| **Join Interval**  | Minimum time between players joining from the queue (in seconds).                |
+| **Whitelist Mode** | Only allow whitelisted players to join the server.                               |
+| **VPN Block**      | Block players using a VPN (kick or send to queue).                               |
 
 ## Priority Roles
 
@@ -37,7 +37,8 @@ Priority roles are configured in the dashboard under your server's queue setting
 - **Whitelisted** — Whether this role counts as whitelisted when whitelist mode is enabled.
 
 <Callout type="info">
-  Priority is automatically detected when a player has a Discord identifier linked to their FiveM account.
+    Priority is automatically detected when a player has a Discord identifier
+    linked to their FiveM account.
 </Callout>
 
 ## Maintenance Mode

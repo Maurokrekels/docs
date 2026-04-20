@@ -1,6 +1,6 @@
 # Installation
 
-import { Callout, Steps } from 'nextra/components'
+import { Callout, Steps } from "nextra/components"
 
 The FiveGateway resource connects your FiveM server to the platform. Here you will find the full installation instructions.
 
@@ -45,11 +45,12 @@ See [Configuration](/resource/configuration) for all available settings.
 
 ### Activate
 
-Add the resource to `server.cfg` (below the API key line):
+Add the resource to `server.cfg` (below the API key line) and grant it the ACE permission needed to execute commands:
 
 ```cfg
 set FIVEGATEWAY_API_KEY "your-api-key-here"
 ensure fivegateway
+add_ace resource.fivegateway command allow
 ```
 
 ### Verify
@@ -59,7 +60,8 @@ Start your server and check the console for the FiveGateway startup banner. Your
 </Steps>
 
 <Callout type="warning">
-  Make sure outgoing WebSocket traffic is not blocked by your firewall or hosting provider.
+    Make sure outgoing WebSocket traffic is not blocked by your firewall or
+    hosting provider.
 </Callout>
 
 ## Updating

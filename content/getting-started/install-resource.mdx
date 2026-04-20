@@ -41,11 +41,12 @@ set FIVEGATEWAY_API_KEY "your-api-key-here"
 
 ### Start the resource
 
-Add the resource to your `server.cfg` (make sure it comes **after** the API key line):
+Add the resource to your `server.cfg` (make sure it comes **after** the API key line) and grant it the ACE permission needed to execute commands:
 
 ```cfg
 set FIVEGATEWAY_API_KEY "your-api-key-here"
 ensure fivegateway
+add_ace resource.fivegateway command allow
 ```
 
 ### Verify the connection

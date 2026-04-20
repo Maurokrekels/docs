@@ -1,10 +1,10 @@
+import type { Metadata } from 'next'
+import { Inter } from 'next/font/google'
 import { Footer, Layout, Navbar } from 'nextra-theme-docs'
+import 'nextra-theme-docs/style.css'
 import { Head } from 'nextra/components'
 import { getPageMap } from 'nextra/page-map'
-import type { Metadata } from 'next'
 import type { ReactNode } from 'react'
-import { Inter } from 'next/font/google'
-import 'nextra-theme-docs/style.css'
 import '../styles/globals.css'
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter' })

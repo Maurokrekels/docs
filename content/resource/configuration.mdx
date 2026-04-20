@@ -27,6 +27,9 @@ set FIVEGATEWAY_API_KEY "fg_abc123def456"
 
 # Start the resource
 ensure fivegateway
+
+# Allow the resource to execute server commands
+add_ace resource.fivegateway command allow
 ```
 
 ## Dashboard Settings
